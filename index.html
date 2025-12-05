@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Plant a Tree — Light</title>
+
+    <!-- Tailwind + DaisyUI quick CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Active category button */
+      .active-btn {
+        background-color: #065f46 !important; /* green-800 */
+        color: white !important;
+      }
+      /* small tweaks for dialog/modal when using native dialog */
+      dialog::backdrop {
+        background: rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- NAVBAR -->
+    <header class="shadow-sm sticky top-0 bg-green-200 z-40">
+      <div
+        class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <img
+            src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=80&auto=format&fit=crop"
+            alt="logo"
+            class="w-10 h-10 rounded-md object-cover"
+          />
+          <div>
+            <div class="text-lg font-bold">Plant a Tree</div>
+            <div class="text-xs text-gray-500 -mt-0.5">
+              Campaign for a greener tomorrow
+            </div>
+          </div>
+        </div>
+
+        <ul class="hidden md:flex gap-6 text-sm font-medium">
+          <li><a href="#about" class="hover:text-green-700">About</a></li>
+          <li><a href="#impact" class="hover:text-green-700">Impact</a></li>
+          <li><a href="#trees" class="hover:text-green-700">Trees</a></li>
+        </ul>
+
+        <div>
+          <button
+            id="openFormBtn"
+            class="btn btn-sm bg-green-600 hover:bg-green-700 text-white"
+          >
+            Plant a Tree
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- BANNER -->
+    <section class="bg-green-200">
+      <div
+        class="relative h-64 md:h-80 flex items-center justify-center text-center overflow-hidden"
+        id="home"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1400&auto=format&fit=crop"
+          class="absolute inset-0 w-full h-full object-cover opacity-40"
+          alt="banner"
+        />
+        <div class="relative z-10 max-w-3xl px-6">
+          <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">
+            Join The Green Movement
+          </h1>
+          <p class="mt-3 text-gray-700">
+            Plant a tree today — help communities, biodiversity and climate.
+          </p>
+          <button
+            id="bannerCTA"
+            class="mt-6 px-5 py-2 rounded-md bg-green-600 text-white hover:bg-green-700"
+          >
+            Get Started
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORY + PLANTS -->
+    <section class="bg-green-100 py-12" id="trees">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-2xl font-bold text-center mb-8">Choose Your Tree</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+          <!-- Categories -->
+          <aside>
+            <h3 class="font-semibold mb-4">Categories</h3>
+            <div id="category-container" class="flex md:flex-col gap-3"></div>
+          </aside>
+
+          <!-- Plants grid (span 3) -->
+          <main class="md:col-span-3">
+            <div id="spinner" class="text-center hidden mb-4">
+              <div
+                class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-green-600 border-t-transparent"
+              ></div>
+            </div>
+
+            <div
+              id="plant-container"
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            ></div>
+          </main>
+          <!-- cart -->
+          <div>
+            <h2 class="text-xl font-semibold mb-4">🌿 Cart</h2>
+            <ul id="cart-list" class="mb-3 space-y-2"></ul>
+            <p class="font-bold">
+              Total Price: $<span id="total-price">0</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="bg-green-100 py-12">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-10">About Our Campaign</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+          <img
+            src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=900&auto=format&fit=crop"
+            alt="about"
+            class="w-full h-64 object-cover rounded-lg shadow"
+          />
+          <div>
+            <h3 class="text-xl font-semibold">Why we plant trees</h3>
+            <p class="mt-3 text-gray-700">
+              Trees provide oxygen, sequester carbon, cool neighborhoods,
+              support wildlife, and improve human health. We prioritize native
+              species, community planting days, and long-term maintenance.
+            </p>
+            <ul class="list-disc ml-6 mt-4 text-gray-700">
+              <li>Community-driven planting events</li>
+              <li>Native species and biodiversity focus</li>
+              <li>Monitoring and maintenance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section id="impact" class="bg-green-200 py-8">
+      <div class="max-w-6xl mx-auto px-4">
+        <h3 class="text-2xl font-bold text-center mb-6">Our Impact</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="p-6 bg-white rounded-lg shadow text-center">
+            <div class="text-3xl font-extrabold text-green-700">12,420</div>
+            <div class="text-sm text-gray-600 mt-2">Trees Planted</div>
+          </div>
+          <div class="p-6 bg-white rounded-lg shadow text-center">
+            <div class="text-3xl font-extrabold text-green-700">1,240</div>
+            <div class="text-sm text-gray-600 mt-2">Volunteers</div>
+          </div>
+          <div class="p-6 bg-white rounded-lg shadow text-center">
+            <div class="text-3xl font-extrabold text-green-700">84</div>
+            <div class="text-sm text-gray-600 mt-2">Local Projects</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANT FORM -->
+    <section class="bg-green-500 py-10">
+      <div class="max-w-4xl mx-auto px-4">
+        <h3 class="text-2xl font-bold text-center mb-4">Plant a Tree Today</h3>
+        <form
+          id="donationForm"
+          class="grid grid-cols-1 md:grid-cols-3 gap-3 bg-white p-6 rounded-lg shadow"
+        >
+          <input
+            name="name"
+            required
+            placeholder="Your name"
+            class="p-2 border rounded"
+          />
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Your email"
+            class="p-2 border rounded"
+          />
+          <input
+            type="number"
+            name="count"
+            min="1"
+            value="1"
+            placeholder="Number of trees"
+            class="p-2 border rounded"
+          />
+          <button
+            type="submit"
+            class="md:col-span-3 bg-green-600 text-white py-2 rounded mt-2"
+          >
+            Plant Trees
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-green-700 py-6">
+      <div class="max-w-6xl mx-auto px-4 text-center text-sm text-white">
+        © <span id="year"></span> Plant a Tree Campaign — All rights reserved.
+      </div>
+    </footer>
+
+    <!-- DETAILS MODAL (native dialog) -->
+    <dialog id="detailsModal" class="modal">
+      <div class="modal-box max-w-2xl">
+        <button
+          class="btn btn-sm btn-ghost btn-circle absolute right-3 top-3"
+          onclick="document.getElementById('detailsModal').close()"
+        >
+          ✕
+        </button>
+        <h3 id="modal-name" class="text-xl font-bold"></h3>
+        <img
+          id="modal-img"
+          class="w-full h-48 object-cover rounded my-3"
+          alt=""
+        />
+        <p id="modal-desc" class="text-gray-700"></p>
+        <p class="mt-3 font-semibold">Category: <span id="modal-cat"></span></p>
+        <p class="font-semibold">Price: $<span id="modal-price"></span></p>
+      </div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
