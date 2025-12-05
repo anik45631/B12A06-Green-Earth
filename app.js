@@ -1,11 +1,3 @@
-/* app.js — Plant a Tree  */
-/* API endpoints used:
-   - categories: https://openapi.programming-hero.com/api/categories
-   - plants by category: https://openapi.programming-hero.com/api/category/${id}
-   - plant detail: https://openapi.programming-hero.com/api/plant/${id}
-   - all plants: https://openapi.programming-hero.com/api/plants  (not used directly but available)
-*/
-
 const categoryContainer = document.getElementById("category-container");
 const plantContainer = document.getElementById("plant-container");
 const spinner = document.getElementById("spinner");
